@@ -1,25 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>BMI converter</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Advanced BMI Calculator</title>
 </head>
+
 <body>
-    
     <main>
         <div class="box">
             <h1>Body Mass Index (BMI) Calculator</h1>
-            <label for="height">Your Height (cm):</label>
-            <input type="number" id="height" name="height">
-            <label for="height">Your Weight (kg):</label>
-            <input type="number" id="weight" name="weight">
-            <button id="btn">Calculate</button>
-            <span id="bmi"></span>
-            <span id="condition"></span>
+
+            <div class="unit-toggle">
+                <span>Metric (cm/kg)</span>
+                <label class="switch">
+                    <input type="checkbox" id="unitToggle">
+                    <span class="slider"></span>
+                </label>
+                <span>Imperial (ft/in/lbs)</span>
+            </div>
+
+            <div id="metricInputs">
+                <label for="heightCm">Height (cm):</label>
+                <input type="number" id="heightCm" placeholder="e.g. 175">
+
+                <label for="weightKg">Weight (kg):</label>
+                <input type="number" id="weightKg" placeholder="e.g. 70">
+            </div>
+
+            <div id="imperialInputs" class="hidden">
+                <label>Height:</label>
+                <div class="height-imperial">
+                    <input type="number" id="heightFt" placeholder="Feet">
+                    <input type="number" id="heightIn" placeholder="Inches">
+                </div>
+
+                <label for="weightLbs">Weight (lbs):</label>
+                <input type="number" id="weightLbs" placeholder="e.g. 154">
+            </div>
+
+            <div class="buttons">
+                <button id="calculateBtn">Calculate BMI</button>
+                <button id="clearBtn">Clear</button>
+            </div>
+
+            <p id="errorMsg" class="error hidden"></p>
+
+            <div id="result" class="hidden">
+                <p id="bmiValue"></p>
+                <p id="condition"></p>
+                <p id="idealRange"></p>
+            </div>
+
+            <div class="bmi-table">
+                <h3>BMI Categories</h3>
+                <table>
+                    <tr>
+                        <td>Underweight</td>
+                        <td>&lt; 18.5</td>
+                    </tr>
+                    <tr>
+                        <td>Normal weight</td>
+                        <td>18.5 – 24.9</td>
+                    </tr>
+                    <tr>
+                        <td>Overweight</td>
+                        <td>25 – 29.9</td>
+                    </tr>
+                    <tr>
+                        <td>Obesity</td>
+                        <td>≥ 30</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <button id="historyBtn" title="View Calculation History">📊</button>
+
+        <div id="historyModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Calculation History</h2>
+                <ul id="historyList"></ul>
+                <p id="noHistory" class="hidden">No calculations yet.</p>
+                <button id="clearHistoryBtn" class="clearHistory">Clear History</button>
+            </div>
+        </div>
     </main>
-    
-    <script src="./app.js"></script>
+
+    <script src="app.js"></script>
 </body>
+
 </html>
